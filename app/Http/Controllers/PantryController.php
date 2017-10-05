@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class ExampleController extends Controller
+class PantryController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -11,8 +11,5 @@ class ExampleController extends Controller
      */
     public function __construct()
     {
-        //
     }
-
-    //
 }
