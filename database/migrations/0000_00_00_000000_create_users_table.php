@@ -18,8 +18,10 @@ class CreateUsersTable extends Migration
             $table->integer('user_type_id')->unsigned();
             $table->string('name');
             $table->string('last_name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
+            $table->string('api_token', 60)->unique();
+            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +34,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::dropIfExists('users');
     }
 }

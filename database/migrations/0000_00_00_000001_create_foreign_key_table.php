@@ -19,6 +19,12 @@ class CreateForeignKeyTable extends Migration
                 ->onDelete('restrict');
         });
 
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreign('category_id')
+                ->references('id')->on('categories')
+                ->onDelete('restrict');
+        });
+
         Schema::table('pantries', function (Blueprint $table) {
             $table->foreign('user_id')
                 ->references('id')->on('users')

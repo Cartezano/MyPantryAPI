@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class PantryController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -11,9 +11,9 @@ class PantryController extends Controller
      */
     public function index()
     {
-        $pantries = Pantry::all()->toArray();
+        $categories = Category::all()->toArray();
 
-        return response()->json($pantries, 200);
+        return response()->json($categories, 200);
     }
 
     /**
@@ -24,9 +24,9 @@ class PantryController extends Controller
      */
     public function store(Request $request)
     {
-        $pantry = Pantry::updateOrCreate(['name' => $request->name], $request->all());
+        $category = Category::updateOrCreate(['name' => $request->name], $request->all());
 
-        return response()->json($pantry, 201);
+        return response()->json($category, 201);
     }
 
     /**
@@ -37,9 +37,9 @@ class PantryController extends Controller
      */
     public function show($id)
     {
-        $pantry = Pantry::findOrFail($id);
+        $category = Category::findOrFail($id);
 
-        return response()->json($pantry, 200);
+        return response()->json($category, 200);
     }
 
     /**
@@ -51,10 +51,10 @@ class PantryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pantry = Pantry::findOrFail($id);
-        $pantry->update($request->all());
+        $category = Category::findOrFail($id);
+        $category->update($request->all());
 
-        return response()->json($pantry, 200);
+        return response()->json($category, 200);
     }
 
     /**
@@ -65,9 +65,9 @@ class PantryController extends Controller
      */
     public function destroy($id)
     {
-        $pantry = Pantry::findOrFail($id);
-        $pantry->delete();
+        $category = Category::findOrFail($id);
+        $category->delete();
 
-        return response()->json($pantry, 200);
+        return response()->json($category, 200);
     }
 }

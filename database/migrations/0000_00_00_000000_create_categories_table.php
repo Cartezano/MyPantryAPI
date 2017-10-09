@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePantriesTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreatePantriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pantries', function (Blueprint $table) {
+        Schema::table('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('product_id')->unsigned();
-            $table->date('date_expiration');
-            $table->integer('quality');
+            $table->string('name')->unique();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +28,6 @@ class CreatePantriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pantries');
+        Schema::dropIfExists('categories');
     }
 }
