@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pantry extends Model
 {
@@ -20,7 +21,7 @@ class Pantry extends Model
      *
      * @var array
      */
-    protected $fillable = ['run', 'digit_verify', 'name', 'last_name', 'phone', 'email', 'password'];
+    protected $fillable = ['user_id', 'product_id', 'expiration_date', 'quality'];
 
     /**
      * The attributes that aren't mass assignable.

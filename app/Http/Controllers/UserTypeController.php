@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-class PantryController extends Controller
+use App\Models\UserType;
+use Illuminate\Http\Request;
+
+class UserTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -11,9 +14,9 @@ class PantryController extends Controller
      */
     public function index()
     {
-        $pantries = Pantry::all()->toArray();
+        $user_types = UserType::all()->toArray();
 
-        return response()->json($pantries, 200);
+        return response()->json($user_types, 200);
     }
 
     /**
@@ -24,9 +27,9 @@ class PantryController extends Controller
      */
     public function store(Request $request)
     {
-        $pantry = Pantry::updateOrCreate(['name' => $request->name], $request->all());
+        $user_type = UserType::updateOrCreate(['name' => $request->name], $request->all());
 
-        return response()->json($pantry, 201);
+        return response()->json($user_type, 201);
     }
 
     /**
@@ -37,9 +40,9 @@ class PantryController extends Controller
      */
     public function show($id)
     {
-        $pantry = Pantry::findOrFail($id);
+        $user_type = UserType::findOrFail($id);
 
-        return response()->json($pantry, 200);
+        return response()->json($user_type, 200);
     }
 
     /**
@@ -51,10 +54,10 @@ class PantryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pantry = Pantry::findOrFail($id);
-        $pantry->update($request->all());
+        $user_type = UserType::findOrFail($id);
+        $user_type->update($request->all());
 
-        return response()->json($pantry, 200);
+        return response()->json($user_type, 200);
     }
 
     /**
@@ -65,9 +68,9 @@ class PantryController extends Controller
      */
     public function destroy($id)
     {
-        $pantry = Pantry::findOrFail($id);
-        $pantry->delete();
+        $user_type = UserType::findOrFail($id);
+        $user_type->delete();
 
-        return response()->json($pantry, 200);
+        return response()->json($user_type, 200);
     }
 }

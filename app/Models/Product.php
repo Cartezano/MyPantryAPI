@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class UserType extends Model
+class Product extends Model
 {
     use SoftDeletes;
 
@@ -14,14 +14,14 @@ class UserType extends Model
      *
      * @var string
      */
-    protected $table = 'user_types';
+    protected $table = 'products';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['category_id', 'code', 'name', 'brand', 'dear_date', 'image'];
 
     /**
      * The attributes that aren't mass assignable.
