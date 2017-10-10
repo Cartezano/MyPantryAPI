@@ -46,6 +46,10 @@ class CreateForeignKeyTable extends Migration
             $table->dropForeign('users_user_type_id_foreign');
         });
 
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropForeign('products_category_id_foreign');
+        });
+
         Schema::table('pantries', function (Blueprint $table) {
             $table->dropForeign('pantries_user_id_foreign');
             $table->dropForeign('pantries_product_id_foreign');
