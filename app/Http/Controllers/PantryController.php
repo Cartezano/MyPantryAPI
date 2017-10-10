@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pantry;
+use Illuminate\Http\Request;
+
 class PantryController extends Controller
 {
     /**
