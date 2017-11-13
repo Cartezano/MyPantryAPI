@@ -17,10 +17,14 @@ class CreatePantriesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('product_id')->unsigned();
-            $table->date('date_expiration');
+            $table->date('expiration_date');
             $table->integer('quality');
+            
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index('user_id');
+            $table->index('product_id');
         });
     }
 

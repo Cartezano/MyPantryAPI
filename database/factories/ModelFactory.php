@@ -11,9 +11,44 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Category::class, function (Faker\Generator $faker) {
     return [
+        'name' => $faker->sentence(4),
+    ];
+});
+
+$factory->define(App\Models\UserType::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->sentence(4),
+    ];
+});
+
+$factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
+    return [
+        'category_id' => mt_rand(1, 50),
+        'code' => $faker->randomNumber(8, true),
+        'brand' => $faker->name,
         'name' => $faker->name,
+        'dear_date' => $faker->date('Y-m-d')
+    ];
+});
+
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
+    return [
+        'user_type_id' => mt_rand(1, 3),
+        'name' => $faker->firstName,
+        'last_name' => $faker->lastName,
         'email' => $faker->email,
+        'password' => $faker->password,
+        'api_token' => str_random(40)
+    ];
+});
+
+$factory->define(App\Models\Pantry::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => mt_rand(1, 20),
+        'product_id' => mt_rand(1, 500),
+        'expiration_date' => $faker->date('Y-m-d'),
+        'quality' => $faker->randomNumber(2, true)
     ];
 });

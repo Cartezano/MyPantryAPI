@@ -19,9 +19,12 @@ class CreateProductsTable extends Migration
             $table->integer('code');
             $table->string('name');
             $table->string('brand');
-            $table->string('image');
+            $table->date('dear_date');
+            
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index('category_id');
         });
     }
 

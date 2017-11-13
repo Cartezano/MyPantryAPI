@@ -22,8 +22,11 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('api_token', 60)->unique();
             $table->rememberToken();
+            
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index('user_type_id');
         });
     }
 

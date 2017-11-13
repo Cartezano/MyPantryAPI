@@ -2,16 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Lumen\Auth\Authorizable;
+use Illuminate\Support\Facades\Hash;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract
+class User extends Model
 {
-    use Authenticatable, Authorizable;
+    use SoftDeletes;
 
     /**
      * The table associated with the model.
@@ -25,21 +22,21 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @var array
      */
-    protected $fillable = ['name', 'last_name', 'email', 'password', 'api_token', 'user_type_id'];
+    protected $fillable = ['user_type_id', 'name', 'last_name', 'email', 'password', 'api_token'];
 
     /**
      * The attributes that aren't mass assignable.
      *
      * @var array
      */
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['password'];
+    protected $hidden = ['password', 'created_at', 'updated_at', 'deleted_at'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -54,4 +51,52 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * Always capitalize the name when we save it to the database
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = strtolower($value);
+    }
+
+    /**
+     * Always capitalize the last name when we save it to the database
+     */
+    public function setLastNameAttribute($value)
+    {
+        $this->attributes['last_name'] = strtolower($value);
+    }
+
+    /**
+     * Always capitalize the email when we save it to the database
+     */
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
+    }
+
+    /**
+     * Always capitalize the first name when we save it to the database
+     */
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
+
+    /**
+     * The user that belong to the user type.
+     */
+    public function userType()
+    {
+        return $this->belongsTo(UserType::class);
+    }
+
+    /**
+     * The user that belong to the pantry.
+     */
+    public function pantry()
+    {
+        return $this->belongsTo(Pantry::class);
+    }
 }
