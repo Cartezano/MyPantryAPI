@@ -52,18 +52,18 @@ class Pantry extends Model
     protected $dates = ['deleted_at'];
 
     /**
-     * Get the product that owns the pantry.
+     * The pantry that belong to the user.
      */
-    public function products()
+    public function user()
     {
-        return $this->hasMany(Category::class);
+        return $this->belongsTo(Pantry::class);
     }
 
     /**
-     * Get the user that owns the pantry.
+     * The pantry that belong to the product.
      */
-    public function users()
+    public function product()
     {
-        return $this->hasMany(Category::class);
+        return $this->belongsTo(Pantry::class);
     }
 }

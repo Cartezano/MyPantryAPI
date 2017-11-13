@@ -20,52 +20,70 @@ $app->get('/', function () use ($app) {
  * Route User Type
  * 
  */
-$app->get('user_types', ['uses'  =>  'UserTypeController@index']);
-$app->post('user_types', ['uses'  =>  'UserTypeController@store']);
-$app->get('user_types/{user_type}', ['uses'  =>  'UserTypeController@show']);
-$app->put('user_types/{user_type}', ['uses'  =>  'UserTypeController@update']);
-$app->delete('user_types/{user_type}', ['uses'  =>  'UserTypeController@destroy']);
+$app->get('user_types',  'UserTypeController@index');
+$app->post('user_types', 'UserTypeController@store');
+$app->get('user_types/{user_type}', 'UserTypeController@show');
+$app->put('user_types/{user_type}', 'UserTypeController@update');
+$app->patch('user_types/{user_type}', 'UserTypeController@update');
+$app->delete('user_types/{user_type}', 'UserTypeController@destroy');
 
 /**
  * 
  * Route User
  * 
  */
-$app->get('users', ['uses'  =>  'UserController@index']);
-$app->post('users', ['uses'  =>  'UserController@store']);
-$app->get('users/{user}', ['uses'  =>  'UserController@show']);
-$app->put('users/{user}', ['uses'  =>  'UserController@update']);
-$app->delete('users/{user}', ['uses'  =>  'UserController@destroy']);
+$app->get('users', 'UserController@index');
+$app->post('users', 'UserController@store');
+$app->get('users/{user}', 'UserController@show');
+$app->put('users/{user}', 'UserController@update');
+$app->patch('users/{user}', 'UserController@update');
+$app->delete('users/{user}', 'UserController@destroy');
 
 /**
  * 
  * Route Product
  * 
  */
-$app->get('products', ['uses'  =>  'ProductController@index']);
-$app->post('products', ['uses'  =>  'ProductController@store']);
-$app->get('products/{product}', ['uses'  =>  'ProductController@show']);
-$app->put('products/{product}', ['uses'  =>  'ProductController@update']);
-$app->delete('products/{product}', ['uses'  =>  'ProductController@destroy']);
+$app->get('products', 'ProductController@index');
+$app->post('products', 'ProductController@store');
+$app->get('products/{product}', 'ProductController@show');
+$app->put('products/{product}', 'ProductController@update');
+$app->patch('products/{product}', 'ProductController@update');
+$app->delete('products/{product}', 'ProductController@destroy');
 
 /**
  * 
  * Route Category
  * 
  */
-$app->get('categories', ['uses'  =>  'CategoryController@index']);
-$app->post('categories', ['uses'  =>  'CategoryController@store']);
-$app->get('categories/{category}', ['uses'  =>  'CategoryController@show']);
-$app->put('categories/{category}', ['uses'  =>  'CategoryController@update']);
-$app->delete('categories/{category}', ['uses'  =>  'CategoryController@destroy']);
+$app->get('categories', 'CategoryController@index');
+$app->post('categories', 'CategoryController@store');
+$app->get('categories/{category}', 'CategoryController@show');
+$app->put('categories/{category}', 'CategoryController@update');
+$app->patch('categories/{category}', 'CategoryController@update');
+$app->delete('categories/{category}', 'CategoryController@destroy');
 
 /**
  * 
  * Route Pantry
  * 
  */
-$app->get('pantries', ['uses'  =>  'PantryController@index']);
-$app->post('pantries', ['uses'  =>  'PantryController@store']);
-$app->get('pantries/{pantry}', ['uses'  =>  'PantryController@show']);
-$app->put('pantries/{pantry}', ['uses'  =>  'PantryController@update']);
-$app->delete('pantries/{pantry}', ['uses'  =>  'PantryController@destroy']);
+$app->get('pantries', 'PantryController@index');
+$app->post('pantries', 'PantryController@store');
+$app->get('pantries/{pantry}', 'PantryController@show');
+$app->put('pantries/{pantry}', 'PantryController@update');
+$app->patch('pantries/{pantry}', 'PantryController@update');
+$app->delete('pantries/{pantry}', 'PantryController@destroy');
+
+/**
+ *
+ * Route Category Product
+ *
+ */
+$app->get('categories/{category}/products', 'CategoryProductController@index');
+$app->get('user_types/{user_type}/users', 'UserTypeUserController@index');
+$app->get('users/{user}/products', 'UserProductController@index');
+$app->post('users/{user}/products', 'UserProductController@store');
+$app->put('users/{user}/products', 'UserProductController@update');
+$app->patch('users/{user}/products', 'UserProductController@update');
+$app->delete('users/{user}/products', 'UserProductController@destroy');

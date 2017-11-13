@@ -93,10 +93,10 @@ class User extends Model
     }
 
     /**
-     * The user that belong to the pantry.
+     * Get the pantry that owns the product.
      */
-    public function pantry()
+    public function pantries()
     {
-        return $this->belongsTo(Pantry::class);
+        return $this->hasMany(Pantry::class);
     }
 }

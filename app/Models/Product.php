@@ -76,10 +76,10 @@ class Product extends Model
     }
 
     /**
-     * The product that belong to the pantry.
+     * Get the pantry that owns the product.
      */
-    public function pantry()
+    public function pantries()
     {
-        return $this->belongsTo(Pantry::class);
+        return $this->hasMany(Category::class);
     }
 }
