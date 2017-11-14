@@ -15,7 +15,7 @@ $app->get('/', function () use ($app) {
     return 'Hello World';
 });
 
-$router->group(['prefix' => 'v1'], function () use ($router) {
+$app->group(['prefix' => 'v1'], function () use ($app) {
     /**
      * 
      * Route User Type
