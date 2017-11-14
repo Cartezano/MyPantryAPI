@@ -15,75 +15,85 @@ $app->get('/', function () use ($app) {
     return 'Hello World';
 });
 
-/**
- * 
- * Route User Type
- * 
- */
-$app->get('user_types',  'UserTypeController@index');
-$app->post('user_types', 'UserTypeController@store');
-$app->get('user_types/{user_type}', 'UserTypeController@show');
-$app->put('user_types/{user_type}', 'UserTypeController@update');
-$app->patch('user_types/{user_type}', 'UserTypeController@update');
-$app->delete('user_types/{user_type}', 'UserTypeController@destroy');
+$router->group(['prefix' => 'v1'], function () use ($router) {
+    /**
+     * 
+     * Route User Type
+     * 
+     */
+    $app->get('user_types',  'UserTypeController@index');
+    $app->post('user_types', 'UserTypeController@store');
+    $app->get('user_types/{user_type}', 'UserTypeController@show');
+    $app->put('user_types/{user_type}', 'UserTypeController@update');
+    $app->patch('user_types/{user_type}', 'UserTypeController@update');
+    $app->delete('user_types/{user_type}', 'UserTypeController@destroy');
 
-/**
- * 
- * Route User
- * 
- */
-$app->get('users', 'UserController@index');
-$app->post('users', 'UserController@store');
-$app->get('users/{user}', 'UserController@show');
-$app->put('users/{user}', 'UserController@update');
-$app->patch('users/{user}', 'UserController@update');
-$app->delete('users/{user}', 'UserController@destroy');
+    /**
+     * 
+     * Route User
+     * 
+     * $app->get('users', 'UserController@index');
+     */
+    $app->get('users', 'UserController@index');
+    $app->get('users/{user}', 'UserController@show');
+    $app->put('users/{user}', 'UserController@update');
+    $app->patch('users/{user}', 'UserController@update');
+    $app->delete('users/{user}', 'UserController@destroy');
 
-/**
- * 
- * Route Product
- * 
- */
-$app->get('products', 'ProductController@index');
-$app->post('products', 'ProductController@store');
-$app->get('products/{product}', 'ProductController@show');
-$app->put('products/{product}', 'ProductController@update');
-$app->patch('products/{product}', 'ProductController@update');
-$app->delete('products/{product}', 'ProductController@destroy');
+    $app->post('login', 'UserController@login');
+    $app->post('register', 'UserController@register');
 
-/**
- * 
- * Route Category
- * 
- */
-$app->get('categories', 'CategoryController@index');
-$app->post('categories', 'CategoryController@store');
-$app->get('categories/{category}', 'CategoryController@show');
-$app->put('categories/{category}', 'CategoryController@update');
-$app->patch('categories/{category}', 'CategoryController@update');
-$app->delete('categories/{category}', 'CategoryController@destroy');
+    /**
+     * 
+     * Route Product
+     * 
+     */
+    $app->get('products', 'ProductController@index');
+    $app->post('products', 'ProductController@store');
+    $app->get('products/{product}', 'ProductController@show');
+    $app->put('products/{product}', 'ProductController@update');
+    $app->patch('products/{product}', 'ProductController@update');
+    $app->delete('products/{product}', 'ProductController@destroy');
 
-/**
- * 
- * Route Pantry
- * 
- */
-$app->get('pantries', 'PantryController@index');
-$app->post('pantries', 'PantryController@store');
-$app->get('pantries/{pantry}', 'PantryController@show');
-$app->put('pantries/{pantry}', 'PantryController@update');
-$app->patch('pantries/{pantry}', 'PantryController@update');
-$app->delete('pantries/{pantry}', 'PantryController@destroy');
+    /**
+     * 
+     * Route Category
+     * 
+     */
+    $app->get('categories', 'CategoryController@index');
+    $app->post('categories', 'CategoryController@store');
+    $app->get('categories/{category}', 'CategoryController@show');
+    $app->put('categories/{category}', 'CategoryController@update');
+    $app->patch('categories/{category}', 'CategoryController@update');
+    $app->delete('categories/{category}', 'CategoryController@destroy');
 
-/**
- *
- * Route Category Product
- *
- */
-$app->get('categories/{category}/products', 'CategoryProductController@index');
-$app->get('user_types/{user_type}/users', 'UserTypeUserController@index');
-$app->get('users/{user}/products', 'UserProductController@index');
-$app->post('users/{user}/products', 'UserProductController@store');
-$app->put('users/{user}/products', 'UserProductController@update');
-$app->patch('users/{user}/products', 'UserProductController@update');
-$app->delete('users/{user}/products', 'UserProductController@destroy');
+    /**
+     * 
+     * Route Pantry
+     * 
+     */
+    $app->get('pantries', 'PantryController@index');
+    $app->post('pantries', 'PantryController@store');
+    $app->get('pantries/{pantry}', 'PantryController@show');
+    $app->put('pantries/{pantry}', 'PantryController@update');
+    $app->patch('pantries/{pantry}', 'PantryController@update');
+    $app->delete('pantries/{pantry}', 'PantryController@destroy');
+
+    /**
+     *
+     * Route Category Product
+     *
+     */
+    $app->get('categories/{category}/products', 'CategoryProductController@index');
+
+    /**
+     *
+     * Route User Product
+     *
+     */
+    $app->get('users/{user}/products', 'UserProductController@index');
+    $app->post('users/{user}/products/{product}', 'UserProductController@store');
+    $app->put('users/{user}/products/{product}', 'UserProductController@update');
+    $app->patch('users/{user}/products/{product}', 'UserProductController@update');
+    $app->delete('users/{user}/products/{product}', 'UserProductController@destroy');
+});

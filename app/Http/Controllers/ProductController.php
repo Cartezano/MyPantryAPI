@@ -11,6 +11,6 @@ class ProductController extends BaseController
     
     const MODEL = 'App\Models\Product';
     protected $validationRules = [
-        'name' => 'required',
+        'name' => 'required'
     ];
 }

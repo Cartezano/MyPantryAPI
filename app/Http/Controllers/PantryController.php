@@ -11,6 +11,7 @@ class PantryController extends BaseController
     
     const MODEL = 'App\Models\Pantry';
     protected $validationRules = [
-        'name' => 'required',
+        'expiration_date' => 'required',
+        'quality'   =>  'required'
     ];
 }

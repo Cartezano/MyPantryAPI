@@ -11,6 +11,6 @@ class UserTypeController extends BaseController
     
     const MODEL = 'App\Models\UserType';
     protected $validationRules = [
-        'name' => 'required',
+        'name' => 'required'
     ];
 }

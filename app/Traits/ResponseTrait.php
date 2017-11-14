@@ -68,4 +68,24 @@ trait ResponseTrait
         ];
         return response()->json($response, $response['code']);
     }
+
+    protected function successResponse()
+    {
+        $response = [
+        'code' => 200,
+        'status' => 'success',
+        'data' => 'true',
+        ];
+        return response()->json($response, $response['code']);
+    }
+
+    protected function errorResponse()
+    {
+        $response = [
+        'code' => 422,
+        'status' => 'error',
+        'data' => 'false',
+        ];
+        return response()->json($response, $response['code']);
+    }
 }
