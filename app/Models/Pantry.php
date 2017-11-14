@@ -31,6 +31,13 @@ class Pantry extends Model
     protected $guarded = ['id'];
 
     /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+
+    /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
@@ -43,4 +50,20 @@ class Pantry extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * The pantry that belong to the user.
+     */
+    public function user()
+    {
+        return $this->belongsTo(Pantry::class);
+    }
+
+    /**
+     * The pantry that belong to the product.
+     */
+    public function product()
+    {
+        return $this->belongsTo(Pantry::class);
+    }
 }

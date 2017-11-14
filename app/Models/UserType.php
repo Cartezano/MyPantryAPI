@@ -31,6 +31,13 @@ class UserType extends Model
     protected $guarded = ['id'];
 
     /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+
+    /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
@@ -43,4 +50,20 @@ class UserType extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * Always capitalize the name when we save it to the database
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = strtolower($value);
+    }
+
+    /**
+     * Get the users that owns the user type.
+     */
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

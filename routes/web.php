@@ -11,61 +11,89 @@
 |
 */
 
-$router->get('/', function () use ($router) {
+$app->get('/', function () use ($app) {
     return 'Hello World';
 });
 
-/**
- * 
- * Route User Type
- * 
-*/
-$router->get('user_types', ['uses'  =>  'UserTypeController@index']);
-$router->post('user_types', ['uses'  =>  'UserTypeController@store']);
-$router->get('user_types/{user_type}', ['uses'  =>  'UserTypeController@show']);
-$router->put('user_types/{user_type}', ['uses'  =>  'UserTypeController@update']);
-$router->delete('user_types/{user_type}', ['uses'  =>  'UserTypeController@destroy']);
+$router->group(['prefix' => 'v1'], function () use ($router) {
+    /**
+     * 
+     * Route User Type
+     * 
+     */
+    $app->get('user_types',  'UserTypeController@index');
+    $app->post('user_types', 'UserTypeController@store');
+    $app->get('user_types/{user_type}', 'UserTypeController@show');
+    $app->put('user_types/{user_type}', 'UserTypeController@update');
+    $app->patch('user_types/{user_type}', 'UserTypeController@update');
+    $app->delete('user_types/{user_type}', 'UserTypeController@destroy');
 
-/**
- * 
- * Route User
- * 
-*/
-$router->get('users', ['uses'  =>  'UserController@index']);
-$router->post('users', ['uses'  =>  'UserController@store']);
-$router->get('users/{user}', ['uses'  =>  'UserController@show']);
-$router->put('users/{user}', ['uses'  =>  'UserController@update']);
-$router->delete('users/{user}', ['uses'  =>  'UserController@destroy']);
+    /**
+     * 
+     * Route User
+     * 
+     * $app->get('users', 'UserController@index');
+     */
+    $app->get('users', 'UserController@index');
+    $app->get('users/{user}', 'UserController@show');
+    $app->put('users/{user}', 'UserController@update');
+    $app->patch('users/{user}', 'UserController@update');
+    $app->delete('users/{user}', 'UserController@destroy');
 
-/**
- * 
- * Route Product
- * 
-*/
-$router->get('products', ['uses'  =>  'ProductController@index']);
-$router->post('products', ['uses'  =>  'ProductController@store']);
-$router->get('products/{product}', ['uses'  =>  'ProductController@show']);
-$router->put('products/{product}', ['uses'  =>  'ProductController@update']);
-$router->delete('products/{product}', ['uses'  =>  'ProductController@destroy']);
+    $app->post('login', 'UserController@login');
+    $app->post('register', 'UserController@register');
 
-/**
- * 
- * Route Category
- * 
-*/
-$router->get('categories', ['uses'  =>  'CategoryController@index']);
-$router->post('categories', ['uses'  =>  'CategoryController@store']);
-$router->get('categories/{category}', ['uses'  =>  'CategoryController@show']);
-$router->put('categories/{category}', ['uses'  =>  'CategoryController@update']);
-$router->delete('categories/{category}', ['uses'  =>  'CategoryController@destroy']);
+    /**
+     * 
+     * Route Product
+     * 
+     */
+    $app->get('products', 'ProductController@index');
+    $app->post('products', 'ProductController@store');
+    $app->get('products/{product}', 'ProductController@show');
+    $app->put('products/{product}', 'ProductController@update');
+    $app->patch('products/{product}', 'ProductController@update');
+    $app->delete('products/{product}', 'ProductController@destroy');
 
-/**
- * 
- * Route Pantry
- * 
-*/
-$router->get('pantries', ['uses'  =>  'PantryController@index']);
-$router->post('pantries', ['uses'  =>  'PantryController@store']);
-$router->get('pantries/{pantry}', ['uses'  =>  'PantryController@show']);
-$router->put('pantries/{pantry}', ['uses'  =>  'PantryController@update']);
-$router->delete('pantries/{pantry}', ['uses'  =>  'PantryController@destroy']);
+    /**
+     * 
+     * Route Category
+     * 
+     */
+    $app->get('categories', 'CategoryController@index');
+    $app->post('categories', 'CategoryController@store');
+    $app->get('categories/{category}', 'CategoryController@show');
+    $app->put('categories/{category}', 'CategoryController@update');
+    $app->patch('categories/{category}', 'CategoryController@update');
+    $app->delete('categories/{category}', 'CategoryController@destroy');
+
+    /**
+     * 
+     * Route Pantry
+     * 
+     */
+    $app->get('pantries', 'PantryController@index');
+    $app->post('pantries', 'PantryController@store');
+    $app->get('pantries/{pantry}', 'PantryController@show');
+    $app->put('pantries/{pantry}', 'PantryController@update');
+    $app->patch('pantries/{pantry}', 'PantryController@update');
+    $app->delete('pantries/{pantry}', 'PantryController@destroy');
+
+    /**
+     *
+     * Route Category Product
+     *
+     */
+    $app->get('categories/{category}/products', 'CategoryProductController@index');
+
+    /**
+     *
+     * Route User Product
+     *
+     */
+    $app->get('users/{user}/products', 'UserProductController@index');
+    $app->post('users/{user}/products/{product}', 'UserProductController@store');
+    $app->put('users/{user}/products/{product}', 'UserProductController@update');
+    $app->patch('users/{user}/products/{product}', 'UserProductController@update');
+    $app->delete('users/{user}/products/{product}', 'UserProductController@destroy');
+});
