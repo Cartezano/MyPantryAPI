@@ -22,7 +22,7 @@ class User extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_type_id', 'name', 'last_name', 'email', 'password', 'api_token'];
+    protected $fillable = ['user_type_id', 'name', 'last_name', 'email', 'password'];
 
     /**
      * The attributes that aren't mass assignable.
