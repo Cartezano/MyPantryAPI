@@ -6,6 +6,8 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 use App\Traits\RestControllerTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Exception;
 
 class UserController extends BaseController
 {
@@ -28,18 +30,18 @@ class UserController extends BaseController
         $m = self::MODEL;
         try
         {
-            $v = \Validator::make($request->all(), $this->validationLogin);
+            $v = Validator::make($request->all(), $this->validationLogin);
             if($v->fails())
             {
-                throw new \Exception("ValidationException");
+                throw new Exception("ValidationException");
             }
             $data = $m::where('email', $request->email)->get()->last();
 
             if(Hash::check($request->password, $data->password)){
-                return $this->successResponse();
+                return $this->showResponse($data);
             }
             return $this->errorResponse();
-        }catch(\Exception $ex)
+        }catch(Exception $ex)
         {
             $data = ['form_validations' => $v->errors(), 'exception' => $ex->getMessage()];
             return $this->clientErrorResponse($data);
@@ -52,14 +54,14 @@ class UserController extends BaseController
         $m = self::MODEL;
         try
         {
-            $v = \Validator::make($request->all(), $this->validationRules);
+            $v = Validator::make($request->all(), $this->validationRules);
             if($v->fails())
             {
-                throw new \Exception("ValidationException");
+                throw new Exception("ValidationException");
             }
             $data = $m::create($request->all());
             return $this->createdResponse($data);
-        }catch(\Exception $ex)
+        }catch(Exception $ex)
         {
             $data = ['form_validations' => $v->errors(), 'exception' => $ex->getMessage()];
             return $this->clientErrorResponse($data);

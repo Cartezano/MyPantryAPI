@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
 use App\Traits\RestControllerTrait;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Exception;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Product;
@@ -35,17 +37,17 @@ class UserProductController extends BaseController
 
         try
         {
-            $v = \Validator::make($request->all(), $this->validationRules);
+            $v = Validator::make($request->all(), $this->validationRules);
             if($v->fails())
             {
-                throw new \Exception("ValidationException");
+                throw new Exception("ValidationException");
             }
             $data = $request->all();
             $data['user_id'] = $user_id;
             $data['product_id'] = $product_id;
             $data = Pantry::create($data);
             return $this->createdResponse($data);
-        }catch(\Exception $ex)
+        }catch(Exception $ex)
         {
             $data = ['form_validations' => $v->errors(), 'exception' => $ex->getMessage()];
             return $this->clientErrorResponse($data);
@@ -62,17 +64,17 @@ class UserProductController extends BaseController
 
         try
         {
-            $v = \Validator::make($request->all(), $this->validationRules);
+            $v = Validator::make($request->all(), $this->validationRules);
             if($v->fails())
             {
-                throw new \Exception("ValidationException");
+                throw new Exception("ValidationException");
             }
             $pantry = Pantry::where('user_id', $user_id)->where('product_id', $product_id)->get()->last();
             $data = $pantry->fill($request->all());
             $data->save();
 
             return $this->createdResponse($data);
-        }catch(\Exception $ex)
+        }catch(Exception $ex)
         {
             $data = ['form_validations' => $v->errors(), 'exception' => $ex->getMessage()];
             return $this->clientErrorResponse($data);

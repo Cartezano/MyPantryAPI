@@ -3,6 +3,8 @@
 namespace App\Traits;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Exception;
 
 trait RestControllerTrait
 {
@@ -11,7 +13,7 @@ trait RestControllerTrait
     public function index()
     {
         $m = self::MODEL;
-        return $this->listResponse($m::all());
+        return $this->showResponse($m::all());
     }
 
     public function show($id)
@@ -29,14 +31,14 @@ trait RestControllerTrait
         $m = self::MODEL;
         try
         {
-            $v = \Validator::make($request->all(), $this->validationRules);
+            $v = Validator::make($request->all(), $this->validationRules);
             if($v->fails())
             {
-                throw new \Exception("ValidationException");
+                throw new Exception("ValidationException");
             }
-            $data = $m::create(\Request::all());
+            $data = $m::create($request->all());
             return $this->createdResponse($data);
-        }catch(\Exception $ex)
+        }catch(Exception $ex)
         {
             $data = ['form_validations' => $v->errors(), 'exception' => $ex->getMessage()];
             return $this->clientErrorResponse($data);
@@ -53,15 +55,15 @@ trait RestControllerTrait
         }
         try
         {
-            $v = \Validator::make(\Request::all(), $this->validationRules);
+            $v = Validator::make($request->all(), $this->validationRules);
             if($v->fails())
             {
-                throw new \Exception("ValidationException");
+                throw new Exception("ValidationException");
             }
-            $data->fill(\Request::all());
+            $data->fill($request->all());
             $data->save();
             return $this->showResponse($data);
-        }catch(\Exception $ex)
+        }catch(Exception $ex)
         {
             $data = ['form_validations' => $v->errors(), 'exception' => $ex->getMessage()];
             return $this->clientErrorResponse($data);
