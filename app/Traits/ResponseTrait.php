@@ -9,9 +9,9 @@ trait ResponseTrait
     protected function createdResponse($data)
     {
         $response = [
-        'code' => 201,
-        'status' => 'success',
-        'data' => $data
+            'code' => 201,
+            'status' => 'success',
+            'data' => $data
         ];
         return response()->json($response, $response['code']);
     }
@@ -19,19 +19,9 @@ trait ResponseTrait
     protected function showResponse($data)
     {
         $response = [
-        'code' => 200,
-        'status' => 'success',
-        'data' => $data
-        ];
-        return response()->json($response, $response['code']);
-    }
-
-    protected function listResponse($data)
-    {
-        $response = [
-        'code' => 200,
-        'status' => 'success',
-        'data' => $data
+            'code' => 200,
+            'status' => 'success',
+            'data' => $data
         ];
         return response()->json($response, $response['code']);
     }
@@ -39,10 +29,10 @@ trait ResponseTrait
     protected function notFoundResponse()
     {
         $response = [
-        'code' => 404,
-        'status' => 'error',
-        'data' => 'Resource not found',
-        'message' => 'Not found'
+            'code' => 404,
+            'status' => 'error',
+            'data' => 'Resource not found',
+            'message' => 'Not found'
         ];
         return response()->json($response, $response['code']);
     }
@@ -50,10 +40,9 @@ trait ResponseTrait
     protected function deletedResponse()
     {
         $response = [
-        'code' => 204,
-        'status' => 'success',
-        'data' => [],
-        'message' => 'Resource deleted'
+            'code' => 204,
+            'status' => 'success',
+            'message' => 'Resource deleted'
         ];
         return response()->json($response, $response['code']);
     }
@@ -61,10 +50,10 @@ trait ResponseTrait
     protected function clientErrorResponse($data)
     {
         $response = [
-        'code' => 422,
-        'status' => 'error',
-        'data' => $data,
-        'message' => 'Unprocessable entity'
+            'code' => 422,
+            'status' => 'error',
+            'data' => $data,
+            'message' => 'Unprocessable entity'
         ];
         return response()->json($response, $response['code']);
     }
@@ -72,9 +61,8 @@ trait ResponseTrait
     protected function successResponse()
     {
         $response = [
-        'code' => 200,
-        'status' => 'success',
-        'data' => 'true',
+            'code' => 200,
+            'status' => 'success',
         ];
         return response()->json($response, $response['code']);
     }
@@ -82,9 +70,9 @@ trait ResponseTrait
     protected function errorResponse()
     {
         $response = [
-        'code' => 422,
-        'status' => 'error',
-        'data' => 'false',
+            'code' => 422,
+            'status' => 'error',
+            'message' => 'Not found resource'
         ];
         return response()->json($response, $response['code']);
     }
