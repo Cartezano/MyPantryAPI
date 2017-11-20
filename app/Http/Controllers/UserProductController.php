@@ -24,7 +24,7 @@ class UserProductController extends BaseController
         if(!$data = User::find($id)){
             return $this->notFoundResponse();
         }
-        return $this->listResponse($data->pantries);
+        return $this->showResponse($data->pantries);
     }
 
     public function store(Request $request, $user_id, $product_id){

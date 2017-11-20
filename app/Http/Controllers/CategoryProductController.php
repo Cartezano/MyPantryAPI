@@ -12,7 +12,7 @@ class CategoryProductController extends BaseController
 
     public function index($id){
         if($data = Category::find($id)){
-            return $this->listResponse($data->products);
+            return $this->showResponse($data->products);
         }
         return $this->notFoundResponse();
     }
