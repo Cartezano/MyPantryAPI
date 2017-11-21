@@ -37,7 +37,7 @@ class UserController extends BaseController
             }
             $data = $m::where('email', $request->email)->get()->last();
 
-            if(Hash::check($request->password, $data->password)){
+            if($data != null && Hash::check($request->password, $data->password)){
                 return $this->showResponse($data);
             }
             return $this->errorResponse();
