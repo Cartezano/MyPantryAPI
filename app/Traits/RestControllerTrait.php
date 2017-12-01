@@ -46,7 +46,7 @@ trait RestControllerTrait
         
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
     	$m = self::MODEL;
         if(!$data = $m::find($id))
