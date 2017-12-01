@@ -54,6 +54,7 @@ $app->group(['prefix' => 'v1'], function () use ($app) {
     $app->put('products/{product}', 'ProductController@update');
     $app->patch('products/{product}', 'ProductController@update');
     $app->delete('products/{product}', 'ProductController@destroy');
+    $app->get('products/{barcode}/barcode', 'ProductController@check');
 
     /**
      * 

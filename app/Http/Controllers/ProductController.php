@@ -13,4 +13,17 @@ class ProductController extends BaseController
     protected $validationRules = [
         'name' => 'required'
     ];
+
+    public function check($barcode)
+    {
+        $m = self::MODEL;
+    	if(!$m::where('code', $barcode)->exists())
+        {
+            return $this->notFoundResponse();   
+        }
+
+        $data = $m::where('code', $barcode)->get();
+        
+        return $this->showResponse($data);
+    }
 }
