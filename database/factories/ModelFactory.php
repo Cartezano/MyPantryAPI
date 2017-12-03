@@ -26,10 +26,10 @@ $factory->define(App\Models\UserType::class, function (Faker\Generator $faker) {
 $factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
     return [
         'category_id' => mt_rand(1, 50),
-        'code' => $faker->randomNumber(13, true),
+        'code' => $faker->randomNumber(8, true),
         'brand' => $faker->name,
-        'name' => $faker->name,
-        'dear_date' => $faker->randomNumber(8, true)
+        'name' => $faker->lastName,
+        'dear_date' => mt_rand(1, 100)
     ];
 });
 

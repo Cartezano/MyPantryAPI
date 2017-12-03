@@ -19,7 +19,7 @@ class ProductController extends BaseController
         $m = self::MODEL;
     	if(!$m::where('code', $barcode)->exists())
         {
-            return $this->notFoundResponse();   
+            return $this->notFoundResponse();
         }
 
         $data = $m::where('code', $barcode)->first();
