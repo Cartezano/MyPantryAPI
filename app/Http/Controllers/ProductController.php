@@ -22,7 +22,7 @@ class ProductController extends BaseController
             return $this->notFoundResponse();   
         }
 
-        $data = $m::where('code', $barcode)->get();
+        $data = $m::where('code', $barcode)->first();
         
         return $this->showResponse($data);
     }

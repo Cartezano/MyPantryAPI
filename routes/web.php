@@ -79,6 +79,8 @@ $app->group(['prefix' => 'v1'], function () use ($app) {
     $app->put('pantries/{pantry}', 'PantryController@update');
     $app->patch('pantries/{pantry}', 'PantryController@update');
     $app->delete('pantries/{pantry}', 'PantryController@destroy');
+    $app->post('pantries/products/{product}/users/{user}/discount', 'PantryController@destroy');
+    $app->post('pantries/products/{product}/users/{user}/count', 'PantryController@destroy');
 
     /**
      *
