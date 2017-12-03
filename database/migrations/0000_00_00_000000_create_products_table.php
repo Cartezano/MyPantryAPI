@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('code')->unique();
             $table->string('name');
             $table->string('brand');
-            $table->date('dear_date');
+            $table->integer('dear_date');
             
             $table->timestamps();
             $table->softDeletes();
