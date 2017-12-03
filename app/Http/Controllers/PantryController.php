@@ -56,7 +56,8 @@ class PantryController extends BaseController
                 throw new Exception("ValidationException");
             }
             if(($data->quality + $request->quality) >= 0){
-                $data->quality = $data->quality + $request->quality;
+                $request->merge(['quality' => ($data->quality + $request->quality)]);
+                $data->fill($request->all());
                 $data->save();
 
                 return $this->showResponse($data);
