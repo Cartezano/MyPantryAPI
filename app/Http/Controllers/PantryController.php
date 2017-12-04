@@ -35,9 +35,9 @@ class PantryController extends BaseController
         
     	if(!$m::where('product_id', $request->product_id)->where('user_id', $request->user_id)->where('expiration_date', $request->expiration_date)->exists())
         {
-            $this->store($request);
+            return $this->store($request);
         } else {
-            $this->updateQuality($request);
+            return $this->updateQuality($request);
         }
     }
 
@@ -63,7 +63,7 @@ class PantryController extends BaseController
                 return $this->showResponse($data);
             }
 
-            return $this->notFoundResponse(); 
+            return $this->notFoundResponse();
         }catch(Exception $ex)
         {
             $data = ['form_validations' => $v->errors(), 'exception' => $ex->getMessage()];
