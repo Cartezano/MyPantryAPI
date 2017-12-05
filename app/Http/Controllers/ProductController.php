@@ -11,7 +11,10 @@ class ProductController extends BaseController
     
     const MODEL = 'App\Models\Product';
     protected $validationRules = [
-        'name' => 'required'
+        'code' => 'required',
+        'name' => 'required',
+        'brand' => 'required',
+        'dear_date' => 'required'
     ];
 
     public function check($barcode)

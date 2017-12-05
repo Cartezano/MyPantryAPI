@@ -25,7 +25,7 @@ class PantryController extends BaseController
     	if($m::where('product_id', $request->product_id)->where('user_id', $request->user_id)->where('expiration_date', $request->expiration_date)->exists())
         {
             $request->quality = - $request->quality;
-            $this->updateQuality($request);
+            return $this->updateQuality($request);
         }
     }
 
